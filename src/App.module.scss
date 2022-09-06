@@ -1,0 +1,33 @@
+@import "./index.scss";
+
+.App {
+  text-align: center;
+  animation-duration: 1s;
+  animation-name: slideDown;
+  min-height: 90vh;
+  padding: 0 5em;
+  font-size: calc(0.5rem + 1vmin);
+  transition: all 0.2s;
+
+  &__button {
+    box-shadow: $shadow;
+    transition: all 0.2s linear;
+    &:hover {
+      color: var(--primary);
+    }
+    &:active {
+      box-shadow: $inner-shadow;
+    }
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-5%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
