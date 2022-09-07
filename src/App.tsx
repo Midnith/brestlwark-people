@@ -1,34 +1,36 @@
 import classes from "./App.module.scss";
-import { Button, Spinner } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPeopleGroup } from "@fortawesome/free-solid-svg-icons";
+import { Spinner } from "grommet";
 import GnomeList from "./components/GnomeList/GnomeList";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const App: React.FC<{}> = (props) => {
   const [allGnomes, setAllGnomes] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   const fetchGnomes = async () => {
-    setIsLoading(true);
-    const response = await fetch(
-      "https://raw.githubusercontent.com/rrafols/mobile_test/master/data.json"
-    );
-    const data = await response.json();
+    try {
+      setIsLoading(true);
+      const response = await fetch(
+        "https://raw.githubusercontent.com/rrafols/mobile_test/master/data.json"
+      );
+      const data = await response.json();
 
-    setAllGnomes(data.Brastlewark);
+      setAllGnomes(data.Brastlewark);
+    } catch (error: any) {
+      throw Error(error);
+    }
     setIsLoading(false);
   };
 
+  useEffect(() => {
+    fetchGnomes();
+  }, []);
+
   return (
     <main className={classes.App}>
-      <Button onClick={fetchGnomes} className={classes["App__button"]}>
-        <FontAwesomeIcon icon={faPeopleGroup} />
-        Meet its people
-      </Button>
-
+      <h1>Bratlewark</h1>
       {<GnomeList gnomes={allGnomes} />}
-      {isLoading && <Spinner animation="border" variant="primary" />}
+      {isLoading && <Spinner />}
     </main>
   );
 };

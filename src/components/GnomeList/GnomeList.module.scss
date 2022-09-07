@@ -1,6 +1,42 @@
+@import "../../index.scss";
+
 .gnome-list {
-    display: grid;
-    gap: 1em;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    margin-top: 3em;
+  display: grid;
+  gap: 1em;
+  grid-template-columns: repeat(auto-fit, minmax(22em, 1fr));
+  margin-top: 3em;
+  grid-auto-rows: auto;
+}
+
+.to-top {
+  position: fixed;
+  bottom: 1.25rem;
+  right: 1.4rem;
+  z-index: 99;
+  background-color: $primary-dark;
+  color: $primary-light;
+  cursor: pointer;
+  padding: 1rem;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  transition: all .3s ease;
+  animation: slideUp .5s ease-out backwards;
+
+  &:hover {
+    background-color: $primary;
+  }
+  @media screen and (max-width: 400px) {
+    opacity: .8;
+  }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        translate: 0 -100%;
+    }
+    to {
+        opacity: 1;
+        translate: 0 0;
+    }
 }

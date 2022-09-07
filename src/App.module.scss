@@ -5,9 +5,18 @@
   animation-duration: 1s;
   animation-name: slideDown;
   min-height: 90vh;
-  padding: 0 5em;
   font-size: calc(0.5rem + 1vmin);
   transition: all 0.2s;
+  padding: 0 .5em;
+
+  @media screen and (min-width: 400px) {
+    padding: 0 5em;
+  }
+
+  h1 {
+    font-family: 'Fondamento', cursive;
+    font-size: 4rem;
+  }
 
   &__button {
     box-shadow: $shadow;
