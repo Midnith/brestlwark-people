@@ -72,7 +72,7 @@ const Gnome: React.FC<{
             <dt>
               <FontAwesomeIcon icon={faWeightScale} />
             </dt>
-            <dd>{weight.toFixed(2)}m</dd>
+            <dd>{weight.toFixed(2)}kg</dd>
           </div>
           <div className={classes.characteristic}>
             <dt>
