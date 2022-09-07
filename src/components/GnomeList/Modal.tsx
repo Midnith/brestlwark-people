@@ -11,7 +11,7 @@ import {
 import { v4 as uuid } from "uuid";
 import Avatar from "../UI/Avatar";
 
-const ModalInfo: React.FC<{ gnome: any; onConfirm: any }> = (props: any) => {
+const ModalInfo: React.FC<{ gnome: any; onConfirm: any, friendRequest:any }> = (props: any) => {
   const {
     name,
     age,
@@ -23,13 +23,19 @@ const ModalInfo: React.FC<{ gnome: any; onConfirm: any }> = (props: any) => {
     friends,
   } = props.gnome;
 
+  const friendHanlder = (event: any) => {
+    const friendName: string = event.target.innerHTML;
+    props.friendRequest(friendName);
+  }
+
   const allProfessions = professions.map((profession: string) => (
     <li key={uuid()}>{profession}</li>
   ));
 
-  const allFriends = friends.map((profession: string) => (
-    <li key={uuid()}>{profession}</li>
+  const allFriends = friends.map((friend: string) => (
+    <li key={uuid()} onClick={friendHanlder}>{friend}</li>
   ));
+
 
   return (
     <>

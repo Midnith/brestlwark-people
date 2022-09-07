@@ -75,6 +75,15 @@
     &__friends {
       grid-area: friends;
       color: $primary-dark;
+
+      ul {
+        cursor: pointer;
+
+        li:hover {
+          background-color: $primary-dark;
+          color: $primary-light;
+        }
+      }
     }
   }
 

@@ -8,6 +8,7 @@ import Gnome from "./Gnome";
 
 const GnomeList: React.FC<{ gnomes: any[] }> = (props) => {
   const [visible, setVisible] = useState(false);
+  
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,6 +31,7 @@ const GnomeList: React.FC<{ gnomes: any[] }> = (props) => {
         key={gnome.id}
         id={gnome.id}
         gnome={gnome}
+        gnomes={props.gnomes}
       />
     ));
   };

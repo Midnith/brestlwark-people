@@ -1,5 +1,5 @@
 import classes from "./Gnome.module.scss";
-import { useState } from "react";
+import { useState, useReducer, useEffect } from "react";
 import { v4 as uuid } from "uuid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -15,18 +15,33 @@ import Modal from "./Modal";
 
 const Gnome: React.FC<{
   id: number;
-  gnome: {}
+  gnome: {},
+  gnomes: any
 }> = (props: any) => {
-  const { name, age, height, weight, hair_color, professions, thumbnail, id} = props.gnome;
-  const [showModal, setShowModal] = useState(false);
-
-
-  const detailsHandler = () => {
-    setShowModal(true);
+  const reducerModal = (state:any, action:any) => {
+    switch (action.type) {
+      case 'SHOW':
+        return !state;
+      case 'HIDE':
+        return !state;
+      default:
+        throw new Error();
+    }
   }
-  const closeModal = () => {
-    setShowModal(false);
+  const [showModal, dispatchShowModal] = useReducer(reducerModal, false);
+  const [showFriend, setShowFriend] = useState("");
+  const [gnomeModal, setGnomeModal] = useState(props.gnome);
+  const { name, age, height, weight, hair_color, professions, thumbnail} = props.gnome;
+
+  const friendHanlder = (name: string) => {
+    setShowFriend(name);
   }
+
+  useEffect(()=>{
+    const myGnomeFriend = props.gnomes.filter((gnome:any) => gnome.name === showFriend);
+    setGnomeModal(myGnomeFriend[0]);
+    
+  },[showFriend, props.gnomes]);
 
   const allProfessions = professions.map((profession:string) => (
     <li key={uuid()}>{profession}</li>
@@ -34,12 +49,12 @@ const Gnome: React.FC<{
 
   return (
     <Card className={classes.gnome}>
-      {showModal&&<Modal gnome={props.gnome} onConfirm={closeModal} />}
+      {showModal&&<Modal gnome={gnomeModal?gnomeModal:props.gnome} onConfirm={()=>dispatchShowModal({type: "SHOW"})} friendRequest={friendHanlder} />}
       <div className={classes["gnome__info"]}>
-        <span className={classes.circle} onClick={detailsHandler}></span>
+        <span className={classes.circle} onClick={()=>dispatchShowModal({type: "HIDE"})}></span>
         <span
           className={classes["gnome__details"]}
-          onClick={detailsHandler}
+          onClick={()=>dispatchShowModal({type: "HIDE"})}
         >
           <FontAwesomeIcon icon={faMagnifyingGlass} />
         </span>
