@@ -1,0 +1,121 @@
+@import "../../index.scss";
+
+.gnome {
+  padding: 0.5em;
+  font-size: 0.85rem;
+  background: $greyLight-1;
+  height: 100%;
+  position: relative;
+  border: 2px solid $greyLight-1;
+
+  display: grid !important;
+  grid-template-columns: 1fr;
+
+  box-shadow: $shadow;
+  transition: 0.3s ease;
+  animation: cardEntrance 700ms ease-out backwards;
+
+  @media screen and (min-width: 600px) {
+    grid-template-columns: 1fr 1fr;
+    padding: 2em;
+  }
+
+  &__details {
+    font-size: 1.1rem;
+    position: absolute;
+    bottom: 13px;
+    right: 22px;
+    transition: all 0.1s ease;
+    color: $primary;
+
+    @media screen and (max-width: 600px) {
+      top: 18px;
+    }
+
+    &:hover {
+      transform: rotate(90deg);
+      cursor: pointer;
+    }
+  }
+
+  &:hover {
+    color: $primary;
+    z-index: 1;
+    border: 2px solid $primary;
+  }
+
+  h3 {
+    margin: 0.75em 0;
+    font-size: 1rem;
+    width: 80%;
+    margin: 1em auto;
+  }
+
+  &__skills {
+    text-align: center;
+    padding: 15px;
+
+    h4 {
+      margin-bottom: 2em;
+    }
+
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1em;
+
+      li {
+        border: 1px solid $primary-dark;
+        border-radius: 0.2rem;
+        display: inline-block;
+        padding: 0.4rem;
+      }
+    }
+  }
+}
+
+.allCharacteristics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1em;
+  color: $primary-dark;
+  max-width: 12em;
+  margin: 1rem auto 0.25rem;
+
+  dd {
+    margin: 0;
+  }
+}
+
+.circle {
+  display: inline-block;
+  width: 150px;
+  aspect-ratio: 1;
+  background-color: $primary-light;
+  border-radius: 50%;
+  position: absolute;
+  bottom: -85px;
+  right: -75px;
+
+  @media screen and (max-width: 600px) {
+    top: -85px;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+@keyframes cardEntrance {
+  from {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

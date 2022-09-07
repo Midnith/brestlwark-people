@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Fondamento&family=Lora&family=Montserrat:wght@400;500;700&display=swap');
+
+:root {
+  --primary-light: #91bfe3;
+  --primary: #2167ae;
+  --primary-dark: #23366f;
+
+  --white: #ffffff;
+  --greyLight-1: #e4ebf5;
+}
+
+$primary-light: var(--primary-light);
+$primary: var(--primary);
+$primary-dark: var(--primary-dark);
+$white: var(--white);
+$greyLight-1: var(--greyLight-1);
+
+$shadow: 0.3rem 0.3rem 0.6rem var(--greyLight-2),
+  -0.2rem -0.2rem 0.5rem var(--white);
+$inner-shadow: inset 0.2rem 0.2rem 0.5rem var(--greyLight-2),
+  inset -0.2rem -0.2rem 0.5rem rgba(var(--white), 0.8);
+
+$pfont: 'Lora', serif;
+$hfont: 'Roboto', sans-serif;
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+body {
+  background: $primary-light;
+  color: $primary-dark;
+  height: 100vh;
+  font-family: $pfont;
+  padding: 2em 1em;
+  @media screen and (min-width: 600px) {
+    padding: 4em 1em;
+  }
+}
+
+h1,  h2, h3, h4, h5, h6 {
+  font-family: $hfont;
+}
