@@ -1,4 +1,5 @@
 import classes from "./Gnome.module.scss";
+import { useState } from "react";
 import { v4 as uuid } from "uuid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -10,55 +11,65 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Card } from "grommet";
 import Avatar from "../UI/Avatar";
+import Modal from "./Modal";
 
 const Gnome: React.FC<{
   id: number;
-  avatar: string;
-  name: string;
-  profession: string[];
-  hair_color: string;
-  age: number;
-  weight: number;
-  height: number;
-}> = (props) => {
-  const allProfessions = props.profession.map((profession) => (
+  gnome: {}
+}> = (props: any) => {
+  const { name, age, height, weight, hair_color, professions, thumbnail, id} = props.gnome;
+  const [showModal, setShowModal] = useState(false);
+
+
+  const detailsHandler = () => {
+    setShowModal(true);
+  }
+  const closeModal = () => {
+    setShowModal(false);
+  }
+
+  const allProfessions = professions.map((profession:string) => (
     <li key={uuid()}>{profession}</li>
   ));
 
   return (
     <Card className={classes.gnome}>
+      {showModal&&<Modal gnome={props.gnome} onConfirm={closeModal} />}
       <div className={classes["gnome__info"]}>
-        <span className={classes.circle}></span>
-        <span className={classes["gnome__details"]}>
+        <span className={classes.circle} onClick={detailsHandler}></span>
+        <span
+          className={classes["gnome__details"]}
+          onClick={detailsHandler}
+        >
           <FontAwesomeIcon icon={faMagnifyingGlass} />
         </span>
-        <Avatar src={props.avatar} alt="User portrait" />
-        <h3>{props.name}</h3>
+        <Avatar src={thumbnail} alt="User portrait" />
+        <h3>{name}</h3>
 
         <dl className={classes.allCharacteristics}>
           <div className={classes.characteristic}>
             <dt>
               <FontAwesomeIcon icon={faCakeCandles} />
             </dt>
-            <dd>{props.age} years</dd>
+            <dd>{age} years</dd>
           </div>
           <div className={classes.characteristic}>
             <dt>
               <FontAwesomeIcon icon={faWeightScale} />
             </dt>
-            <dd>{props.weight.toFixed(2)}m</dd>
+            <dd>{weight.toFixed(2)}m</dd>
           </div>
           <div className={classes.characteristic}>
             <dt>
               <FontAwesomeIcon icon={faUpDown} />
             </dt>
-            <dd>{props.height.toFixed(2)}m</dd>
+            <dd>{height.toFixed(2)}m</dd>
           </div>
           <div className={classes.characteristic}>
             <dt>
               <FontAwesomeIcon icon={faSprayCanSparkles} />
             </dt>
-            <dd>{props.hair_color} hair</dd>
+            <dd>{hair_color} hair</dd>
           </div>
         </dl>
       </div>

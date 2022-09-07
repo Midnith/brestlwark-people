@@ -1,9 +1,9 @@
 import classes from "./GnomeList.module.scss";
+import { useEffect, useState } from "react";
 import { Box, Grid, InfiniteScroll } from "grommet";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUp } from "@fortawesome/free-solid-svg-icons";
 import Gnome from "./Gnome";
-import { useEffect, useState } from "react";
 
 
 const GnomeList: React.FC<{ gnomes: any[] }> = (props) => {
@@ -25,17 +25,11 @@ const GnomeList: React.FC<{ gnomes: any[] }> = (props) => {
   let gnomesInfiniteScroll;
 
   const gnomesGathered = () => {
-    return props.gnomes.map((gnome) => (
+    return props.gnomes.map((gnome) => (    
       <Gnome
         key={gnome.id}
         id={gnome.id}
-        avatar={gnome.thumbnail}
-        name={gnome.name}
-        profession={gnome.professions}
-        hair_color={gnome.hair_color}
-        age={gnome.age}
-        weight={gnome.weight}
-        height={gnome.height}
+        gnome={gnome}
       />
     ));
   };
@@ -48,7 +42,6 @@ const GnomeList: React.FC<{ gnomes: any[] }> = (props) => {
         <InfiniteScroll
           items={allGnomes}
           step={10}
-          onMore={() => console.log("!!! onMore")}
         >
           {(gnome: any, index: number) => <Box key={index}>{gnome}</Box>}
         </InfiniteScroll>
