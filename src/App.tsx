@@ -1,7 +1,7 @@
 import classes from "./App.module.scss";
 import { Spinner } from "grommet";
 import GnomeList from "./components/GnomeList/GnomeList";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 
 const App: React.FC<{}> = (props) => {
   const [allGnomes, setAllGnomes] = useState([]);
@@ -28,7 +28,7 @@ const App: React.FC<{}> = (props) => {
 
   return (
     <main className={classes.App}>
-      <h1>Bratlewark</h1>
+      <h1>Brastlewark</h1>
       {<GnomeList gnomes={allGnomes} />}
       {isLoading && <Spinner />}
     </main>

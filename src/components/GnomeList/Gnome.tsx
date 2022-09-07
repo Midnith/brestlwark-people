@@ -1,5 +1,5 @@
 import classes from "./Gnome.module.scss";
-import { v4 as uuid } from 'uuid';
+import { v4 as uuid } from "uuid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCakeCandles,
@@ -28,6 +28,7 @@ const Gnome: React.FC<{
   return (
     <Card className={classes.gnome}>
       <div className={classes["gnome__info"]}>
+        <span className={classes.circle}></span>
         <span className={classes["gnome__details"]}>
           <FontAwesomeIcon icon={faMagnifyingGlass} />
         </span>
@@ -68,9 +69,7 @@ const Gnome: React.FC<{
           {allProfessions.length > 0 ? (
             allProfessions
           ) : (
-            <p style={{ position: "absolute", top: "45%", left: "65%" }}>
-              Doesn't work 🏖️
-            </p>
+            <p style={{ gridColumn: "1/3" }}>Doesn't work 🏖️</p>
           )}
         </ul>
       </div>

@@ -7,9 +7,6 @@
 
   --white: #ffffff;
   --greyLight-1: #e4ebf5;
-  --greyLight-2: #c8d0e7;
-  --greyLight-3: #bec8e4;
-  --greyDark: #9baacf;
 }
 
 $primary-light: var(--primary-light);
@@ -17,9 +14,6 @@ $primary: var(--primary);
 $primary-dark: var(--primary-dark);
 $white: var(--white);
 $greyLight-1: var(--greyLight-1);
-$greyLight-2: var(--greyLight-2);
-$greyLight-3: var(--greyLight-3);
-$greyDark: var(--greyDark);
 
 $shadow: 0.3rem 0.3rem 0.6rem var(--greyLight-2),
   -0.2rem -0.2rem 0.5rem var(--white);

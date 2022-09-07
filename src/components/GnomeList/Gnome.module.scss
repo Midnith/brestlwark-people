@@ -2,7 +2,7 @@
 
 .gnome {
   padding: 0.5em;
-  font-size: 0.735rem;
+  font-size: 0.85rem;
   background: $greyLight-1;
   height: 100%;
   position: relative;
@@ -23,9 +23,10 @@
   &__details {
     font-size: 1.1rem;
     position: absolute;
-    top: 15px;
-    left: 18px;
+    bottom: 13px;
+    right: 22px;
     transition: all 0.1s ease;
+    color: $primary;
 
     &:hover {
       transform: rotate(90deg);
@@ -75,7 +76,6 @@
 .allCharacteristics {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  font-size: 0.75rem;
   gap: 1em;
   color: $primary-dark;
   max-width: 12em;
@@ -86,6 +86,17 @@
   }
 }
 
+.circle {
+  display: inline-block;
+  width: 150px;
+  aspect-ratio: 1;
+  background-color: $primary-light;
+  border-radius: 50%;
+  position: absolute;
+  bottom: -85px;
+  right: -75px;
+}
+
 @keyframes cardEntrance {
   from {
     opacity: 0;
@@ -94,5 +105,14 @@
   to {
     opacity: 1;
     transform: scale(1);
+  }
+}
+
+@keyframes wave {
+  from {
+    background-color: $primary-light;
+  }
+  to {
+    background-color: $primary;
   }
 }
