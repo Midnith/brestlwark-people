@@ -28,25 +28,26 @@ const Gnome: React.FC<{
       case "SHOW":
         return !state;
       case "HIDE":
-        setGnomeModal({})
+        setGnomeModal({});
         return !state;
       default:
         throw new Error();
     }
-  }
+  };
 
   const [showModal, dispatchShowModal] = useReducer(reducerModal, false);
   const friendHanlder = (name: string) => {
     setShowFriend(name);
-  }
+  };
 
   useEffect(() => {
     const myGnomeFriend = props.gnomes.filter(
       (gnome: any) => gnome.name === showFriend
     );
-    
+
     myGnomeFriend[0] && setGnomeModal(myGnomeFriend[0]);
     setShowFriend("");
+    return () => {}
   }, [showFriend, props.gnomes]);
 
   const allProfessions = professions.map((profession: string) => (
@@ -57,7 +58,7 @@ const Gnome: React.FC<{
     <Card className={classes.gnome} data-testid="gnome-card">
       {showModal && (
         <Modal
-          gnome={(Object.keys(gnomeModal).length > 0) ? gnomeModal : props.gnome}
+          gnome={Object.keys(gnomeModal).length > 0 ? gnomeModal : props.gnome}
           onConfirm={() => dispatchShowModal({ type: "SHOW" })}
           friendRequest={friendHanlder}
         />
