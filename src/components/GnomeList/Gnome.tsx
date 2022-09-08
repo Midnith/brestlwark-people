@@ -19,7 +19,7 @@ const Gnome: React.FC<{
   gnomes: any;
 }> = (props: any) => {
   const [showFriend, setShowFriend] = useState("");
-  const [gnomeModal, setGnomeModal] = useState(props.gnome);
+  const [gnomeModal, setGnomeModal] = useState({});
   const { name, age, height, weight, hair_color, professions, thumbnail } =
     props.gnome;
 
@@ -28,7 +28,7 @@ const Gnome: React.FC<{
       case "SHOW":
         return !state;
       case "HIDE":
-        setGnomeModal(null);
+        setGnomeModal({})
         return !state;
       default:
         throw new Error();
@@ -44,7 +44,9 @@ const Gnome: React.FC<{
     const myGnomeFriend = props.gnomes.filter(
       (gnome: any) => gnome.name === showFriend
     );
-    setGnomeModal(myGnomeFriend[0]);
+    
+    myGnomeFriend[0] && setGnomeModal(myGnomeFriend[0]);
+    setShowFriend("");
   }, [showFriend, props.gnomes]);
 
   const allProfessions = professions.map((profession: string) => (
@@ -52,10 +54,10 @@ const Gnome: React.FC<{
   ));
 
   return (
-    <Card className={classes.gnome}>
+    <Card className={classes.gnome} data-testid="gnome-card">
       {showModal && (
         <Modal
-          gnome={gnomeModal ? gnomeModal : props.gnome}
+          gnome={(Object.keys(gnomeModal).length > 0) ? gnomeModal : props.gnome}
           onConfirm={() => dispatchShowModal({ type: "SHOW" })}
           friendRequest={friendHanlder}
         />
@@ -69,7 +71,7 @@ const Gnome: React.FC<{
           className={classes["gnome__details"]}
           onClick={() => dispatchShowModal({ type: "HIDE" })}
         >
-          <FontAwesomeIcon icon={faMagnifyingGlass} />
+          <FontAwesomeIcon icon={faMagnifyingGlass} data-testid="details" />
         </span>
         <Avatar src={thumbnail} alt="User portrait" />
         <h3>{name}</h3>

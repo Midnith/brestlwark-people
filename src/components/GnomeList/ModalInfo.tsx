@@ -39,11 +39,11 @@ const ModalInfo: React.FC<{ gnome: any; onConfirm: any, friendRequest:any }> = (
 
   return (
     <>
-    <div className={classes.backdrop} onClick={props.onConfirm}></div>
+    <div className={classes.backdrop} onClick={props.onConfirm} data-testid="backdrop"></div>
       <Card className={classes.modal}>
         <div className={classes.modal__actions}>
           <Button onClick={props.onConfirm}>
-            <FontAwesomeIcon icon={faCircleXmark} />
+            <FontAwesomeIcon icon={faCircleXmark} data-testid="closeButton" />
           </Button>
         </div>
 
@@ -99,7 +99,7 @@ const ModalInfo: React.FC<{ gnome: any; onConfirm: any, friendRequest:any }> = (
               {allFriends.length > 0 ? (
                 allFriends
               ) : (
-                <p style={{ gridColumn: "1/4" }}>This is a lonely gnome 🐺</p>
+                <p style={{ gridColumn: "1/4", cursor: "default" }}>This is a lonely gnome 🐺</p>
               )}
             </ul>
           </div>
