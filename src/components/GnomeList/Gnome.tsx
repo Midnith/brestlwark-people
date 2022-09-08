@@ -54,7 +54,7 @@ const Gnome: React.FC<{
   ));
 
   return (
-    <Card className={classes.gnome}>
+    <Card className={classes.gnome} data-testid="gnome-card">
       {showModal && (
         <Modal
           gnome={(Object.keys(gnomeModal).length > 0) ? gnomeModal : props.gnome}
@@ -71,7 +71,7 @@ const Gnome: React.FC<{
           className={classes["gnome__details"]}
           onClick={() => dispatchShowModal({ type: "HIDE" })}
         >
-          <FontAwesomeIcon icon={faMagnifyingGlass} />
+          <FontAwesomeIcon icon={faMagnifyingGlass} data-testid="details" />
         </span>
         <Avatar src={thumbnail} alt="User portrait" />
         <h3>{name}</h3>

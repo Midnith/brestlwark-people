@@ -28,6 +28,25 @@
       box-shadow: $inner-shadow;
     }
   }
+
+  &__search {
+    padding: 1rem;
+    border-radius: .3rem;
+    width: 90vw;
+    border: 2px solid $primary-light;
+    background: $greyLight-1;
+    margin-top: 2em;
+    transition: all .3s ease;
+    text-align: center;
+    font-size: 1rem;
+
+    &:hover, &:active {
+      border: 2px solid $primary;
+    }
+    &:active {
+      outline: none;
+    }
+  }
 }
 
 @keyframes slideDown {

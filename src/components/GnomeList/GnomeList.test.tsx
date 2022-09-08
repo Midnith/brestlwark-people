@@ -1,10 +1,14 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import GnomeList from "./GnomeList";
 
 describe("GnomeList component",() => {
-    test('renders gnome list', () => {
-    //   render(<GnomeList {...this.} />);
-    //   const title = screen.getByText(/Brastlewark 🧙‍♂️/i)
-    //   expect(title).toBeInTheDocument();
+
+    test('Render to top scroll button', () => {
+      render(<GnomeList gnomes={[]} />);
+
+      fireEvent.scroll(window, { target: { scrollY: 500 } });
+
+      const topButton: HTMLElement = screen.getByTestId("to-top");
+      expect(topButton).toBeInTheDocument();
     });
   });
