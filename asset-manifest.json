@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/brestlwark-people/static/css/main.436e4197.css",
+    "main.js": "/brestlwark-people/static/js/main.c8bab53d.js",
+    "index.html": "/brestlwark-people/index.html",
+    "main.436e4197.css.map": "/brestlwark-people/static/css/main.436e4197.css.map",
+    "main.c8bab53d.js.map": "/brestlwark-people/static/js/main.c8bab53d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.436e4197.css",
+    "static/js/main.c8bab53d.js"
+  ]
+}
