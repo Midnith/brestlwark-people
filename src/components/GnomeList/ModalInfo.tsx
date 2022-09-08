@@ -68,7 +68,7 @@ const ModalInfo: React.FC<{ gnome: any; onConfirm: any, friendRequest:any }> = (
                   <FontAwesomeIcon icon={faWeightScale} /> WEIGHT
                 </h4>
               </dt>
-              <dd>{weight.toFixed(2)}m</dd>
+              <dd>{weight.toFixed(2)}kg</dd>
               <dt>
                 <h4>
                   <FontAwesomeIcon icon={faUpDown} /> HEIGHT
@@ -99,7 +99,7 @@ const ModalInfo: React.FC<{ gnome: any; onConfirm: any, friendRequest:any }> = (
               {allFriends.length > 0 ? (
                 allFriends
               ) : (
-                <p style={{ gridColumn: "1/4" }}>This is a lonely gnome 🐺</p>
+                <p style={{ gridColumn: "1/4", cursor: "default" }}>This is a lonely gnome 🐺</p>
               )}
             </ul>
           </div>

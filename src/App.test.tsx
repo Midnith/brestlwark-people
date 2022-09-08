@@ -1,9 +1,19 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+describe("App component",() => {
+  test('render title', () => {
+    render(<App />);
+
+    const title = screen.getByText(/Brastlewark 🧙‍♂️/i)
+    expect(title).toBeInTheDocument();
+  });
+  test('render gnome list', async () => {
+    render(<App />);
+
+    const gnomeItems = await screen.findAllByRole("contentinfo")
+    expect(gnomeItems).not.toHaveLength(0);
+  });
 });
+
+

@@ -40,7 +40,7 @@ const GnomeList: React.FC<{ gnomes: any[] }> = (props) => {
     const allGnomes = gnomesGathered();
 
     gnomesInfiniteScroll = (
-      <Grid className={classes["gnome-list"]}>
+      <Grid className={classes["gnome-list"]}  role="contentinfo">
         <InfiniteScroll
           items={allGnomes}
           step={10}

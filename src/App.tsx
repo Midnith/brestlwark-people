@@ -28,11 +28,10 @@ const App: React.FC<{}> = (props) => {
 
   return (
     <main className={classes.App}>
-      <h1>Brastlewark 🧙‍♂️</h1>
+      <h1>Brastlewark citizens 🧙‍♂️</h1>
       {<GnomeList gnomes={allGnomes} />}
       {isLoading && <Spinner />}
     </main>
-  );
-};
+)};
 
 export default App;
