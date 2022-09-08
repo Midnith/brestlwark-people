@@ -11,50 +11,63 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Card } from "grommet";
 import Avatar from "../UI/Avatar";
-import Modal from "./Modal";
+import Modal from "./ModalInfo";
 
 const Gnome: React.FC<{
   id: number;
-  gnome: {},
-  gnomes: any
+  gnome: {};
+  gnomes: any;
 }> = (props: any) => {
-  const reducerModal = (state:any, action:any) => {
+  const [showFriend, setShowFriend] = useState("");
+  const [gnomeModal, setGnomeModal] = useState(props.gnome);
+  const { name, age, height, weight, hair_color, professions, thumbnail } =
+    props.gnome;
+
+  const reducerModal = (state: any, action: any) => {
     switch (action.type) {
-      case 'SHOW':
+      case "SHOW":
         return !state;
-      case 'HIDE':
+      case "HIDE":
+        setGnomeModal(null);
         return !state;
       default:
         throw new Error();
     }
   }
-  const [showModal, dispatchShowModal] = useReducer(reducerModal, false);
-  const [showFriend, setShowFriend] = useState("");
-  const [gnomeModal, setGnomeModal] = useState(props.gnome);
-  const { name, age, height, weight, hair_color, professions, thumbnail} = props.gnome;
 
+  const [showModal, dispatchShowModal] = useReducer(reducerModal, false);
   const friendHanlder = (name: string) => {
     setShowFriend(name);
   }
 
-  useEffect(()=>{
-    const myGnomeFriend = props.gnomes.filter((gnome:any) => gnome.name === showFriend);
+  useEffect(() => {
+    const myGnomeFriend = props.gnomes.filter(
+      (gnome: any) => gnome.name === showFriend
+    );
     setGnomeModal(myGnomeFriend[0]);
-    
-  },[showFriend, props.gnomes]);
+  }, [showFriend, props.gnomes]);
 
-  const allProfessions = professions.map((profession:string) => (
+  const allProfessions = professions.map((profession: string) => (
     <li key={uuid()}>{profession}</li>
   ));
 
   return (
     <Card className={classes.gnome}>
-      {showModal&&<Modal gnome={gnomeModal?gnomeModal:props.gnome} onConfirm={()=>dispatchShowModal({type: "SHOW"})} friendRequest={friendHanlder} />}
+      {showModal && (
+        <Modal
+          gnome={gnomeModal ? gnomeModal : props.gnome}
+          onConfirm={() => dispatchShowModal({ type: "SHOW" })}
+          friendRequest={friendHanlder}
+        />
+      )}
       <div className={classes["gnome__info"]}>
-        <span className={classes.circle} onClick={()=>dispatchShowModal({type: "HIDE"})}></span>
+        <span
+          className={classes.circle}
+          onClick={() => dispatchShowModal({ type: "HIDE" })}
+        ></span>
         <span
           className={classes["gnome__details"]}
-          onClick={()=>dispatchShowModal({type: "HIDE"})}
+          onClick={() => dispatchShowModal({ type: "HIDE" })}
         >
           <FontAwesomeIcon icon={faMagnifyingGlass} />
         </span>
