@@ -16,7 +16,6 @@ const App: React.FC<{}> = (props) => {
         "https://raw.githubusercontent.com/rrafols/mobile_test/master/data.json"
       );
       const data = await response.json();
-
       setAllGnomes(data.Brastlewark);
     } catch (error: any) {
       throw Error(error);
@@ -26,6 +25,7 @@ const App: React.FC<{}> = (props) => {
 
   useEffect(() => {
     fetchGnomes();
+    return () => {}
   }, []);
 
   const searchHandler = () => {
@@ -50,7 +50,7 @@ const App: React.FC<{}> = (props) => {
           onChange={searchHandler}
         ></input>
       )}
-      {
+      {!isLoading && 
         <GnomeList
           gnomes={
             searchRef.current?.value.length! > 0 ? filteredGnomes : allGnomes
